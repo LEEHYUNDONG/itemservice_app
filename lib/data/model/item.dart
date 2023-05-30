@@ -27,10 +27,12 @@ Future<List<Item>> fetchItem() async {
     // var itemLst = jsonDecode(resp.body);
     var list = jsonDecode(resp.body);
     var itemLst = list.map((element) => Item.fromJson(element)).toList();
+    // debugging
     print(list);
     print(itemLst[0].itemName);
     print(itemLst.runtimeType);
     print(list.runtimeType);
+
     return list;
   } else {
     print(resp.statusCode);
