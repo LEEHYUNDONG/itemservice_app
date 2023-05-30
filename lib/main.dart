@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // disable debug banner
+      debugShowCheckedModeBanner: false,
       title: 'Order',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
@@ -59,16 +61,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   future: fetchItem(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      // print(snapshot.data!.first.itemName);
                       return ListView.builder(
                           itemCount: snapshot.data?.length,
                           itemBuilder: (context, index) {
-                            // Item item = snapshot.data!.elementAt(index);
-                            return Text(snapshot.data.toString());
-                            // return Card(
-                            //   child: Text('$snapshot.data[index]'),
-                            // );
-                          });
+                            // loop through the list of snapshot.data
+                            List<Item> itemLst = snapshot.data as List<Item>;
+                            // return ListTile
+                            return ListTile(
+                              title: Text(itemLst[index].itemName),
+                              subtitle: Text(itemLst[index].price.toString()),
+                              trailing: Text(itemLst[index].quantity.toString()),
+                            );
+                          },
+                          // Vertical viewport was given unbounded height error fix (below 2 lines)
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true);
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
                     }
