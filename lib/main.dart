@@ -64,10 +64,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           itemCount: snapshot.data?.length,
                           itemBuilder: (context, index) {
                             // Item item = snapshot.data!.elementAt(index);
-
-                            return Card(
-                              child: Text('$snapshot.data[index]'),
-                            );
+                            return Text("${snapshot.data?[index]}");
+                            // return Card(
+                            //   child: Text('$snapshot.data[index]'),
+                            // );
                           });
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
