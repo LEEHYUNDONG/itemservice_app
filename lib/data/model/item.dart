@@ -24,16 +24,10 @@ Future<List<Item>> fetchItem() async {
   String itemListUrl = 'http://localhost:8080/basic/items';
   final resp = await http.get(Uri.parse(itemListUrl));
   if (resp.statusCode == 200) {
-    // var itemLst = jsonDecode(resp.body);
-    var list = jsonDecode(resp.body);
-    var itemLst = list.map((element) => Item.fromJson(element)).toList();
-    // debugging
-    print(list);
-    print(itemLst[0].itemName);
-    print(itemLst.runtimeType);
-    print(list.runtimeType);
+    var list = json.decode(resp.body).cast<Map<String, dynamic>>();
+    var itemList = list.map<Item>((json) => Item.fromJson(json)).toList();
 
-    return list;
+    return itemList;
   } else {
     print(resp.statusCode);
     throw 'Error Occured';
