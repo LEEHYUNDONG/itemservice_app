@@ -70,7 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             return ListTile(
                               title: Text(itemLst[index].itemName),
                               subtitle: Text(itemLst[index].price.toString()),
-                              trailing: Text(itemLst[index].quantity.toString()),
+                              trailing:
+                                  Text(itemLst[index].quantity.toString()),
                             );
                           },
                           // Vertical viewport was given unbounded height error fix (below 2 lines)
@@ -86,10 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  OutlinedButton(
-                    onPressed: () => _updateItem(),
-                    child: Text("상품수정"),
-                  ),
+                  // OutlinedButton(
+                  //   onPressed: () => _updateItem(),
+                  //   child: Text("상품수정"),
+                  // ),
                   OutlinedButton(
                     onPressed: () => _addItem(),
                     child: Text("상품등록"),
